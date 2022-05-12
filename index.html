@@ -14,18 +14,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
     <script>
-        function saveToLocalStorage(e) {
+        function saveToLocalStorage(event) {
             event.preventDefault();
             // const name = e.target.username.value;
             // const email = e.target.emailId.value;
             // const mobile = e.target.phoneNo.value;
 
             const newObj = {
-                name: ,
-                email: ,
-                mobile: 
+                name ,
+                email ,
+                mobile 
             }
-            axios.post("f7aa8e78ae7a44b494b3da29f4d8c266/appointmentdata" , newObj)
+            axios.post("https://crudcrud.com/api/f7aa8e78ae7a44b494b3da29f4d8c266/appointmentdata" , newObj)
             .then( (res) =>{
                 console.log(res);
             })
@@ -33,6 +33,18 @@
                 console.log(err);
             })
         }
+        window.addEventListener("DOMContentLoader" , ()=>{
+            axios.get("https://crudcrud.com/api/f7aa8e78ae7a44b494b3da29f4d8c266/appointmentdata")
+            .then((res)=>{
+                for(var i=0;i<res.data.length;i++){
+                    showUser(res.data[i])
+                }
+                console.log(res)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        })
         function showUser(user) {
             const parentNode = document.getElementById("listOfUser");
             const childHTML = `<li> ${user.name} - ${user.email} 
